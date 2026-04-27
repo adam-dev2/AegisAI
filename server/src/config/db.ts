@@ -1,6 +1,7 @@
-import {Pool} from 'pg';
+import { logger } from '../lib/logger.js';
 import { DATABASE_URL } from './env.js';
 
-const pool =  new Pool({
-    connectionString:DATABASE_URL
-})
+if(!DATABASE_URL) {
+    logger.error(`Can't read DB url`)
+}
+
