@@ -5,8 +5,9 @@ import pool from '../../config/db.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET, NODE_ENV } from "../../config/env.js";
+import { mfaSetup } from "./mfa.service.js";
 
-interface ICookieOptions {
+export interface ICookieOptions {
     httpOnly:boolean,
     secure:boolean,
     sameSite:boolean | "lax" | "strict" | "none" | undefined,
@@ -31,9 +32,18 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
     throw new AppError("Invalid credentials", 401);
   }
   
-  const generateToken = jwt.sign({ id: user.id, email: user.email },JWT_SECRET!,{
+  const generateToken = jwt.sign({ id: user.id,username:user.username, email: user.email,mfa_verified:user.mfa_enabled },JWT_SECRET!,{
     expiresIn: '1h'
   })
+  let qr;
+  if(!user.mfa_enabled){
+    try {
+        qr = mfaSetup(req)
+    }catch(err) {
+        throw new AppError("Erro while generating qr",500)
+    }
+  }
+
   const CookieOptions:ICookieOptions = {
     httpOnly:true,
     secure:NODE_ENV === 'production',
@@ -43,6 +53,8 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
   res.cookie('token',generateToken,CookieOptions)
   res.status(200).json({
     success: true,
-    data: { id: user.id, email: user.email }
+    data: { id: user.id, email: user.email },
+    mfa_setup:!user.mfa_enabled,
+    qr
   });
 });
