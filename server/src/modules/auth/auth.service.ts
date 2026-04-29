@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { catchAsync } from "../../lib/catchAsync.js";
 import { AppError } from "../../lib/AppError.js";
 import jwt, { type JwtPayload } from 'jsonwebtoken'
-import { JWT_SECRET } from "../../config/env.js";
+import { JWT_SECRET, REFRESH_JWT_SECRET } from "../../config/env.js";
 import { CookieOptions } from "../../types/CookieOptions.js";
 
 export const refreshTokenHandler = catchAsync(async(req:Request,res:Response) => {
@@ -11,9 +11,9 @@ export const refreshTokenHandler = catchAsync(async(req:Request,res:Response) =>
         throw new AppError("Refresh token missing",403);
    }
    try {
-    const decoded = jwt.verify(currentRefreshToken,JWT_SECRET!) as JwtPayload;
+    const decoded = jwt.verify(currentRefreshToken,REFRESH_JWT_SECRET!) as JwtPayload;
    }catch(err:any) {
-    if(err.name = "TokenExpiredError"){
+    if(err.name === "TokenExpiredError"){
         throw new AppError("refresh token expired please login again",403)
     }
     throw new AppError("Invalid refresh token",403)
