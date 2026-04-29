@@ -8,11 +8,10 @@ import { JWT_SECRET } from "../../config/env.js";
 import { mfaSetup } from "./mfa.service.js";
 import { CookieOptions } from "../../types/CookieOptions.js";
 import speakeasy from "speakeasy";
-import { logger } from "../../lib/logger.js";
 
 export const register = catchAsync(async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const {username, email, password } = req.body;
+  if (!username||!email || !password) {
     throw new AppError("Email and password are required", 400);
   }
   if (password.length < 8) {
@@ -28,8 +27,8 @@ export const register = catchAsync(async (req: Request, res: Response) => {
   const saltRounds = 12;
   const passwordHash = await bcrypt.hash(password, saltRounds);
   const result = await pool.query(
-    `INSERT INTO users(email,password_hash) VALUES($1,$2) RETURNING id,email`,
-    [email, passwordHash],
+    `INSERT INTO users(username,email,password_hash) VALUES($1,$2) RETURNING id,email`,
+    [username,email, passwordHash],
   );
   const newUser = result.rows[0];
   res.status(201).json({
@@ -37,6 +36,7 @@ export const register = catchAsync(async (req: Request, res: Response) => {
     message: "User registered successfully",
     data: {
       id: newUser.id,
+      username:newUser.username,
       email: newUser.email,
     },
   });
@@ -59,13 +59,11 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
   if (!isMatch) {
     throw new AppError("Invalid credentials", 401);
   }
-
   const generateToken = jwt.sign(
     {
       id: user.id,
       username: user.username,
-      email: user.email,
-      mfa_enabled: user.mfa_enabled,
+      email: user.email
     },
     JWT_SECRET!,
     {
@@ -75,17 +73,16 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
   let qr;
   if (!user.mfa_enabled) {
     try {
-      qr = await mfaSetup(req);
+      qr = await mfaSetup(user);
     } catch (err) {
       throw new AppError("Erro while generating qr", 500);
     }
   }
-  logger.info(qr)
   res.cookie("token", generateToken, CookieOptions);
   res.status(200).json({
     success: true,
-    mfa_setup: !user.mfa_enabled,
-    qr,
+    mfa_enabled: user.mfa_enabled,
+    qr
   });
 });
 
@@ -105,7 +102,7 @@ export const validatePass = catchAsync(async (req: Request, res: Response) => {
     throw new AppError("UnAuthorized", 403);
   }
 
-  const verify = bcrypt.compare(oldPassword, fetchUser.rows[0].password_hash);
+  const verify = await bcrypt.compare(oldPassword, fetchUser.rows[0].password_hash);
   if (!verify) {
     throw new AppError("Invalid Credentials", 400);
   }
@@ -128,7 +125,7 @@ export const changePass = catchAsync(async (req: Request, res: Response) => {
   if (fetchUser.rowCount === 0) {
     throw new AppError("UnAuthorized", 403);
   }
-  const verify = bcrypt.compare(oldPassword, fetchUser.rows[0].password_hash);
+  const verify = await bcrypt.compare(oldPassword, fetchUser.rows[0].password_hash);
   if (!verify) {
     throw new AppError("Invalid Credentials", 400);
   }
@@ -147,7 +144,7 @@ export const changePass = catchAsync(async (req: Request, res: Response) => {
     "UPDATE users SET password_hash = $1 WHERE id=$2",
     [newPasswordHash, req.user?.id],
   );
-  if (!updatePassword) {
+  if (!updatePassword.rowCount) {
     throw new AppError("Error while update password", 500);
   }
   res
