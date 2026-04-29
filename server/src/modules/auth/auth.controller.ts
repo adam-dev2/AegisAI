@@ -4,9 +4,11 @@ import { AppError } from "../../lib/AppError.js";
 import pool from '../../config/db.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET, NODE_ENV } from "../../config/env.js";
+import { JWT_SECRET } from "../../config/env.js";
 import { mfaSetup } from "./mfa.service.js";
 import { CookieOptions } from "../../lib/CookieOptions.js";
+import speakeasy from 'speakeasy'
+
 
 export const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -46,3 +48,58 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
     qr
   });
 });
+
+export const validatePass = catchAsync(async(req:Request,res:Response) => {
+  const {oldPassword,newPassword} = req.body;
+  if(!oldPassword || !newPassword) {
+    throw new AppError("both fields are required",400);
+  }
+  if(oldPassword === newPassword) {
+    throw new AppError("old and new password can't be same",400);
+  }
+  const fetchUser = await pool.query('SELECT password_hash FROM users WHERE email = $1 AND id = $2',[req.user?.email,req.user?.id]);
+  if(fetchUser.rowCount === 0) {
+    throw new AppError("UnAuthorized",403);
+  }
+
+  const verify = bcrypt.compare(oldPassword,fetchUser.rows[0].password_hash);
+  if(!verify) {
+    throw new AppError("Invalid Credentials",400);
+  }
+
+  res.status(200).json({success:true});
+})
+
+export const changePass = catchAsync(async(req:Request,res:Response) => {
+  const {oldPassword,newPassword,otp} = req.body;
+  if(!otp) {
+    throw new AppError("MFA missing",400);
+  }
+  if(oldPassword === newPassword) {
+    throw new AppError("old and new password can't be same",400);
+  }
+  const fetchUser = await pool.query('SELECT password_hash FROM users WHERE email = $1 AND id = $2',[req.user?.email,req.user?.id]);
+  if(fetchUser.rowCount === 0) {
+    throw new AppError("UnAuthorized",403);
+  }
+  const verify = bcrypt.compare(oldPassword,fetchUser.rows[0].password_hash);
+  if(!verify) {
+    throw new AppError("Invalid Credentials",400);
+  }
+  const secret = fetchUser.rows[0].totp_secret;
+  const verified = speakeasy.totp.verify({
+    secret,
+    encoding:'base32',
+    token:otp,
+    window:1
+  })
+  if(!verified) {
+    throw new AppError("Invalid MFA",401);
+  }
+  const newPasswordHash = await bcrypt.hash(newPassword,12);
+  const updatePassword = await pool.query('UPDATE users SET password_hash = $1 WHERE id=$2',[newPasswordHash,req.user?.id]);
+  if(!updatePassword) {
+    throw new AppError("Error while update password",500);
+  }
+  res.status(200).json({success:true,message:"password updated successfully"})
+})
