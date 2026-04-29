@@ -3,7 +3,7 @@ import { catchAsync } from '../lib/catchAsync.js';
 import type { NextFunction, Request, Response } from 'express';
 import { AppError } from '../lib/AppError.js';
 import { API_KEY, JWT_SECRET } from '../config/env.js';
-import type { loginTokenInterface,mfaTokenInterface } from '../types/token.interfaces.js';
+import type { mfaTokenInterface } from '../types/token.interfaces.js';
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -24,10 +24,7 @@ export const authMiddleware = catchAsync(async(req:Request,res:Response,next:Nex
         throw new AppError("Token Missing",401);
     }
     try {
-        const decoded = jwt.verify(token, JWT_SECRET!) as loginTokenInterface;
-        if(!decoded.mfa_enabled) {
-            throw new AppError("Invalid Token",401);
-        }
+        const decoded = jwt.verify(token, JWT_SECRET!);
         req.user = decoded as IUser;
         next();
     }catch(err:any) {
@@ -68,6 +65,5 @@ export const apiKeyVerify = catchAsync(async(req:Request,res:Response,next:NextF
     if(apiKey !== API_KEY) {
         throw new AppError("Invalid API Key",403);
     }
-
-    res.status(200).json({success:true});
+    next();
 })

@@ -9,14 +9,26 @@ import { CookieOptions } from "../../types/CookieOptions.js";
 import { catchAsync } from "../../lib/catchAsync.js";
 
 
-export const mfaSetup = async(req:Request) => {
+export const mfaSetup = async(user:any) => {
     const secret = speakeasy.generateSecret({
-        name:req.user?.username
+        name:user.username
     })
-    await pool.query("UPDATE users SET totp_secret = $1 WHERE email = $2",[secret.base32,req.user?.email])
+    await pool.query("UPDATE users SET totp_secret = $1 WHERE email = $2",[secret.base32,user.email])
     const qr = await QRCode.toDataURL(secret.otpauth_url!);
     return qr
 }
+export const completedMFASetup = catchAsync(async(req:Request,res:Response) => {
+    if(!req.user?.id) {
+        throw new AppError("userid not found",401);
+    }
+    const userId = req.user.id;
+    const updateUser = await pool.query('UPDATE users SET mfa_enabled = true WHERE id = $1',[userId]);
+
+    if(!updateUser) {
+        throw new AppError("Error while updating mfa enabled",500);
+    }
+    res.status(200).json({success:true})
+})
 
 export const mfaVerify = catchAsync(async(req:Request,res:Response) => {
     const authHeader = req.headers.authorization

@@ -11,5 +11,5 @@ export const CookieOptions:ICookieOptions = {
     httpOnly:true,
     secure:NODE_ENV === 'production',
     sameSite:'lax',
-    maxAge:60*100*100
+    maxAge:60 * 60 * 1000
 }
