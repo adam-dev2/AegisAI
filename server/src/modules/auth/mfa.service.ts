@@ -3,9 +3,10 @@ import speakeasy from 'speakeasy'
 import QRCode from 'qrcode'
 import pool from "../../config/db.js";
 import { AppError } from "../../lib/AppError.js";
-import jwt, { type JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { JWT_SECRET, REFRESH_JWT_SECRET } from "../../config/env.js";
-import { CookieOptions } from "../../lib/CookieOptions.js";
+import { CookieOptions } from "../../types/CookieOptions.js";
+import { catchAsync } from "../../lib/catchAsync.js";
 
 
 export const mfaSetup = async(req:Request) => {
@@ -17,7 +18,7 @@ export const mfaSetup = async(req:Request) => {
     return qr
 }
 
-export const mfaVerify = async(req:Request,res:Response) => {
+export const mfaVerify = catchAsync(async(req:Request,res:Response) => {
     const authHeader = req.headers.authorization
     const token = authHeader?.split('Bearer ')[1];
     const otp = req.body.otp;
@@ -38,7 +39,7 @@ export const mfaVerify = async(req:Request,res:Response) => {
         window:1
     })
     if(!verified) {
-        throw new AppError('Invalid MFA Token',401);
+        throw new AppError('Invalid MFA',401);
     }
     const generatToken = jwt.sign({
         id:req.user?.id,
@@ -56,4 +57,4 @@ export const mfaVerify = async(req:Request,res:Response) => {
     res.cookie('token',generatToken,CookieOptions)
     res.cookie('refreshToken',generateRefreshToken,CookieOptions)
     res.status(200).json({success:true})
-}
+})
