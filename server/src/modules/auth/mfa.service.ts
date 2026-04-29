@@ -5,7 +5,7 @@ import pool from "../../config/db.js";
 import { AppError } from "../../lib/AppError.js";
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET, REFRESH_JWT_SECRET } from "../../config/env.js";
-import { CookieOptions } from "../../lib/CookieOptions.js";
+import { CookieOptions } from "../../types/CookieOptions.js";
 import { catchAsync } from "../../lib/catchAsync.js";
 
 

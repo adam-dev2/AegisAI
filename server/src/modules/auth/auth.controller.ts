@@ -6,8 +6,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../../config/env.js";
 import { mfaSetup } from "./mfa.service.js";
-import { CookieOptions } from "../../lib/CookieOptions.js";
+import { CookieOptions } from "../../types/CookieOptions.js";
 import speakeasy from "speakeasy";
+import { logger } from "../../lib/logger.js";
 
 export const register = catchAsync(async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -74,16 +75,15 @@ export const loginUser = catchAsync(async (req: Request, res: Response) => {
   let qr;
   if (!user.mfa_enabled) {
     try {
-      qr = mfaSetup(req);
+      qr = await mfaSetup(req);
     } catch (err) {
       throw new AppError("Erro while generating qr", 500);
     }
   }
-
+  logger.info(qr)
   res.cookie("token", generateToken, CookieOptions);
   res.status(200).json({
     success: true,
-    data: { id: user.id, email: user.email },
     mfa_setup: !user.mfa_enabled,
     qr,
   });
