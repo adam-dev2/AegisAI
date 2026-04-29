@@ -2,8 +2,8 @@ import type { Request, Response } from "express";
 import { catchAsync } from "../../lib/catchAsync.js";
 import { AppError } from "../../lib/AppError.js";
 import jwt, { type JwtPayload } from 'jsonwebtoken'
-import { JWT_SECRET, NODE_ENV } from "../../config/env.js";
-import { CookieOptions } from "../../lib/CookieOptions.js";
+import { JWT_SECRET } from "../../config/env.js";
+import { CookieOptions } from "../../types/CookieOptions.js";
 
 export const refreshTokenHandler = catchAsync(async(req:Request,res:Response) => {
    const currentRefreshToken = req.cookies.refreshToken;
