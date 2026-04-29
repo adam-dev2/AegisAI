@@ -1,4 +1,6 @@
-export const parseInvestigationDetails = (investigations:any) => {
+import { fetchFullInvestigation } from "./GetInvestigationDetails.js";
+
+export const parseInvestigationDetails = async (investigations:any) => {
     if(investigations.size === 0) {
         return;
     }
@@ -13,7 +15,6 @@ export const parseInvestigationDetails = (investigations:any) => {
         }
     })
     console.log(parsedInvestigationDetails);
-    
-
-    return parsedInvestigationDetails
+    await fetchFullInvestigation(parsedInvestigationDetails.investigationId);    
+    return parsedInvestigationDetails;
 }
