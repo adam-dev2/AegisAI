@@ -4,7 +4,6 @@ import type { PollingState } from "../types/pollingstate.js";
 import { DateTime } from 'luxon'
 import fs from 'fs'
 import { processInvestigation } from "../modules/investigation/investigation.services.js";
-import { queryLogs } from "../tools/queryRapid7.js";
 
 class pollingManager {
     private state: PollingState = {
@@ -15,7 +14,6 @@ class pollingManager {
     private async pollTask() {
         const currentTime = DateTime.now()
             .setZone('America/Godthab')
-            .minus({ days: 1 })
             .toFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
         try {
             logger.info('Polling rapid7 API');
@@ -28,12 +26,6 @@ class pollingManager {
             if(data.data.length !== 0 ){
                 await processInvestigation(data.data);
             }
-            const result = await queryLogs(
-                "5a1e9e6c-53d1-493a-91f8-78deda2fe3c9",
-                'where(log_entry_id = "4cfcf15d-ad22-4972-a10b-31392122d9f4") limit(1000)',
-                'Last 2h'
-            );
-            fs.writeFileSync("logs.json",JSON.stringify(result,null,2))
         }catch(err) {
             logger.error('Polling Failed',err)
         }
