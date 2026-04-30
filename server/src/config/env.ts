@@ -9,3 +9,5 @@ export const API_KEY = process.env.API_KEY
 export const BASE_URL = process.env.BASE_URL
 export const REGION = process.env.REGION
 export const TENANT_API_KEY = process.env.TENANT_API_KEY
+export const BASE_URL_VERSION_2 = process.env.BASE_URL_VERSION_2
+export const EVIDENCE_URL = process.env.EVIDENCE_URL
