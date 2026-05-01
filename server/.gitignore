@@ -3,5 +3,4 @@ node_modules
 dist
 logs
 rapidData.json
-
-context-fc0b2265-1f3c-4d54-85f3-2f1a898a3e5f.json
+context-*

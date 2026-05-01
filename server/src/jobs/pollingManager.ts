@@ -14,13 +14,13 @@ class pollingManager {
     private async pollTask() {
         const currentTime = DateTime.now()
             .setZone('America/Godthab')
+            .minus({days:1})
             .toFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
         try {
             logger.info('Polling rapid7 API');
-            const response = await rapid7Client.get(`/investigations?start_time=${currentTime}`)
+            const response = await rapid7Client.get(`/investigations?start_time=${currentTime}&size=100`)
             const data = response.data;
             logger.info(data)
-            fs.writeFileSync('responseData.json',JSON.stringify(response.data))
             logger.info(data.length)
 
             if(data.data.length !== 0 ){

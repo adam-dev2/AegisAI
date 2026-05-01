@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.92.0",
     "@neondatabase/serverless": "^1.1.0",
     "@types/axios": "^0.9.36",
     "@types/bcrypt": "^6.0.0",

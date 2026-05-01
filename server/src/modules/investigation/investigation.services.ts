@@ -3,70 +3,9 @@ import { logger } from '../../lib/logger.js';
 import { parseInvestigationDetails } from '../../tools/parseInvestigation.js';
 import { rapid7ClientEvidence, rapid7ClientVersion2 } from '../siem/rapid7.client.js';
 import fs from 'fs';
+import type { ActorFields,GeoFields,NetworkFields,NormalizedEvidence,FileIndicator,EnrichedAlert,EnrichedInvestigation } from '../../types/alert.types.js';
 
 const limit = pLimit(5);
-
-// ── Types ─────────────────────────────────────────────────────
-
-interface ActorFields {
-    user: string | null;
-    account: string | null;
-    asset: string | null;
-    ip: string | null;
-}
-
-interface GeoFields {
-    city: string | null;
-    country: string | null;
-    org: string | null;
-} 
-
-interface NetworkFields {
-    src_ip: string | null;
-    dst_ip: string | null;
-    dst_port: number | null;
-    protocol: string | null;
-    observation_count: number | null;
-}
-
-interface FileIndicator {
-    filename: string;
-    sha256: string | null;
-    sha1: string | null;
-}
-
-export interface NormalizedEvidence {
-    event_type: string;
-    timestamp: string | null;
-    result: string | null;          // auth result, connection_status, alert severity
-    service: string | null;
-    actor: ActorFields;
-    geo: GeoFields | null;
-    network: NetworkFields | null;  // firewall only
-    file_indicators: FileIndicator[] | null; // third_party_alert only
-    detection_context: Record<string, any> | null;
-    raw_source: object | string | null;
-}
-
-export interface EnrichedAlert {
-    alert_id: string;
-    alert_type: string;
-    alert_source: string;
-    created_time: string;
-    fetch_status: 'ok' | 'partial' | 'failed';
-    evidences: NormalizedEvidence[];
-}
-
-export interface EnrichedInvestigation {
-    investigation_id: string;
-    details: Record<string, any>;
-    pipeline_meta: {
-        total_alerts: number;
-        alerts_fetched: number;
-        evidence_failures: string[];
-    };
-    alerts: EnrichedAlert[];
-}
 
 // ── Actor Extractors (per event_type) ─────────────────────────
 
@@ -193,7 +132,6 @@ function normalizeEvidence(rawEvidence: any): NormalizedEvidence {
 
 function parseAndNormalizeEvidences(rawEvidences: any[]): NormalizedEvidence[] {
     return rawEvidences.map((evi: any) => {
-        // Rapid7 sends data as a JSON string — parse it first
         const parsedData = typeof evi.data === 'string'
             ? (() => { try { return JSON.parse(evi.data); } catch { return {}; } })()
             : (evi.data ?? {});
@@ -219,20 +157,13 @@ const processSingleInvestigation = async (rawInv: any): Promise<EnrichedInvestig
 
     const allAlerts: any[] = alertsRes.data?.data ?? [];
 
-    // Take top 4 alerts by created_time DESC
-    const topAlerts = [...allAlerts]
-        .sort((a, b) => new Date(b.created_time).getTime() - new Date(a.created_time).getTime())
-        .slice(0, 4);
-
-    logger.info(`Investigation ${parsed.id}: ${allAlerts.length} total alerts, processing top ${topAlerts.length}`);
+    logger.info(`Investigation ${parsed.id}: ${allAlerts.length} total alerts, processing top ${allAlerts.length}`);
 
     // Step 3: Fetch + normalize evidences for each alert in parallel (partial failure safe)
     const evidenceFailures: string[] = [];
 
     const enrichedAlerts: EnrichedAlert[] = await Promise.all(
-        topAlerts.map(async (alert: any): Promise<EnrichedAlert> => {
-            // alert.id IS the RRN e.g. "rrn:alerts:us3:...:alert:1:abc123"
-            // alert.rrn does not exist as a separate field — do not use it
+        allAlerts.map(async (alert: any): Promise<EnrichedAlert> => {
             const alertRrn = alert.id;
 
             try {
@@ -273,13 +204,11 @@ const processSingleInvestigation = async (rawInv: any): Promise<EnrichedInvestig
         details: detailsRes.data,
         pipeline_meta: {
             total_alerts: allAlerts.length,
-            alerts_fetched: topAlerts.length,
+            alerts_fetched: allAlerts.length,
             evidence_failures: evidenceFailures,
         },
         alerts: enrichedAlerts,
     };
-
-    // Debug write — remove before prod
     fs.writeFileSync(
         `context-${parsed.id}.json`,
         JSON.stringify(enriched, null, 2)
@@ -297,9 +226,7 @@ export const processInvestigation = async (investigations: any[]): Promise<Enric
     const results = await Promise.allSettled(
         investigations.map(inv => limit(() => processSingleInvestigation(inv)))
     );
-
     const enriched: EnrichedInvestigation[] = [];
-
     for (const result of results) {
         if (result.status === 'fulfilled') {
             enriched.push(result.value);
