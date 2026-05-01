@@ -4,11 +4,11 @@
 
 import axios from "axios";
 import type { AxiosInstance } from 'axios';
+import { REGION, TENANT_API_KEY, VIRUSTOTAL_API_KEY } from "../config/env.js";
 
 // ── Config ────────────────────────────────────────────────────
-const REGION = process.env.RAPID7_REGION || "us";
-const API_KEY = process.env.RAPID7_API_KEY!;
-const VT_API_KEY = process.env.VIRUSTOTAL_API_KEY!;
+const API_KEY = TENANT_API_KEY!;
+const VT_API_KEY = VIRUSTOTAL_API_KEY!
 
 const BASE_URLS = {
     idr: `https://${REGION}.api.insight.rapid7.com/idr/v1`,

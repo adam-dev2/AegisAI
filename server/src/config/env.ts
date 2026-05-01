@@ -12,3 +12,4 @@ export const TENANT_API_KEY = process.env.TENANT_API_KEY
 export const BASE_URL_VERSION_2 = process.env.BASE_URL_VERSION_2
 export const EVIDENCE_URL = process.env.EVIDENCE_URL
 export const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
+export const VIRUSTOTAL_API_KEY = process.env.VIRUSTOTAL_API_KEY

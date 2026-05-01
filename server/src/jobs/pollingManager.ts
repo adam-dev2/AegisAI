@@ -18,7 +18,7 @@ class pollingManager {
             .toFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
         try {
             logger.info('Polling rapid7 API');
-            const response = await rapid7Client.get(`/investigations?start_time=${currentTime}&size=100`)
+            const response = await rapid7Client.get(`/investigations?statuses=CLOSED&start_time=${currentTime}&size=100`)
             const data = response.data;
             logger.info(data)
             logger.info(data.length)
