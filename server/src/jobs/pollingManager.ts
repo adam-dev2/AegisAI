@@ -14,16 +14,17 @@ class pollingManager {
     private async pollTask() {
         const currentTime = DateTime.now()
             .setZone('America/Godthab')
+            .minus({days:2})
             .toFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
         try {
             logger.info('Polling rapid7 API');
-            const response = await rapid7Client.get(`/investigations?start_time=${currentTime}`)
+            const response = await rapid7Client.get(`/investigations?start_time=${currentTime}&size=99`)
             const data = response.data;
             logger.info(data)
-            fs.writeFileSync('responseData.json',JSON.stringify(response.data))
-            logger.info(data.length)
+            fs.writeFileSync('responseData.json', JSON.stringify(response.data, null, 2))
+            logger.info(`investigations fetched: ${data.data?.length ?? 0}`)
 
-            if(data.data.length !== 0 ){
+            if (Array.isArray(data.data) && data.data.length > 0) {
                 await processInvestigation(data.data);
             }
         }catch(err) {
@@ -48,11 +49,11 @@ class pollingManager {
         run();
     }
     stop() {
-        if(this.state.isRunning) {
-            clearInterval(this.state.timer!)
+        if (this.state.isRunning && this.state.timer) {
+            clearTimeout(this.state.timer);
             this.state.timer = null;
         }
-        
+
         this.state.isRunning = false;
     }
     updateInterval(newInterval:number) {

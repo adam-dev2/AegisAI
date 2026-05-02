@@ -1,0 +1,930 @@
+{
+  "data": [
+    {
+      "id": "13deccd4-adf1-4781-bbe9-134c6c6e22ec",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:AVM57A6JQUF5",
+      "title": "Custom Alert SA - A User Account Was Enabled - Windows was triggered for log Event Logs in log set Windows Workstations",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-02T12:21:55.054Z"
+        }
+      ],
+      "created_time": "2026-05-02T12:21:57.760Z"
+    },
+    {
+      "id": "b813c442-2f5b-4400-8072-1fcd8d28de99",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:SRW8P3DXDOU8",
+      "title": "Custom Alert SA - A user account was changed - Windows was triggered for log Event Logs in log set Windows Workstations",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-02T12:21:55.054Z"
+        }
+      ],
+      "created_time": "2026-05-02T12:21:57.021Z"
+    },
+    {
+      "id": "a018ed53-48ae-447b-9fe9-48c8a0fa3f28",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:FNACQ8LI3I4B",
+      "title": "SA - Multiple non-admin level login failures detected - keeper",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Kriti Chawla",
+        "email": "sa-52500410@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-05-02T01:12:23.595Z"
+        }
+      ],
+      "created_time": "2026-05-02T01:12:25.022Z"
+    },
+    {
+      "id": "e704972b-dfb1-43f6-9096-d13ea958a76b",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:IH11WWMRSD12",
+      "title": "SA - Windows Privilege Escalation - Workstation",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Ishaan Gupta",
+        "email": "sa-52500729@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-05-01T17:10:59.546Z"
+        }
+      ],
+      "created_time": "2026-05-01T17:11:11.658Z"
+    },
+    {
+      "id": "b89293a1-b051-40fd-9a9d-629c8b71b8f4",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:T1NP42J9SID9",
+      "title": "Custom Alert SA - Admin Account Activity - O365 was triggered for log SA Office365 in log set Cloud Service Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Nitin Guleria",
+        "email": "sa-5200407@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-01T12:48:33.097Z"
+        }
+      ],
+      "created_time": "2026-05-01T12:49:38.849Z"
+    },
+    {
+      "id": "5f1871c4-3cbd-4557-9367-96701be362ee",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:G27012QFM79Z",
+      "title": "Custom Alert SA - Admin Account Activity - O365 was triggered for log SA Office365 in log set Cloud Service Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Nitin Guleria",
+        "email": "sa-5200407@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-01T12:43:28.709Z"
+        }
+      ],
+      "created_time": "2026-05-01T12:44:37.772Z"
+    },
+    {
+      "id": "bca5e2b5-2a8c-4e6a-a0a6-5fcad072f63f",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:V9Z8SFYMDP4A",
+      "title": "Custom Alert SA - Suspicious Attempts to execute encoded/obfuscated commands - Powershell was triggered for log Process Start Events in log set Endpoint Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Anish Ojha",
+        "email": "sa-52500492@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-01T07:58:16.502Z"
+        }
+      ],
+      "created_time": "2026-05-01T07:58:18.071Z"
+    },
+    {
+      "id": "0a38dad9-f3e6-4473-9faf-cb9c6d30ed01",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:5LGNIUPV8YNN",
+      "title": "Custom Alert SA - Users or Group Add Operation Detected by User Account - O365 was triggered for log SA Office365 in log set Cloud Service Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-05-01T04:56:37.577Z"
+        }
+      ],
+      "created_time": "2026-05-01T04:57:42.676Z"
+    },
+    {
+      "id": "40467f59-bf4e-4dcb-8b6b-62360c052baf",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:Z6RW3YRJO4WB",
+      "title": "Custom Alert SA - Suspicious Encoding & Proxy Execution - Powershell was triggered for log Process Start Events in log set Endpoint Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Krrish Krrish",
+        "email": "sa-52500967@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-04-30T21:04:03.368Z"
+        }
+      ],
+      "created_time": "2026-04-30T21:04:28.984Z"
+    },
+    {
+      "id": "fe767d4e-902c-4b75-9f33-ad8a8dc3747d",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:VB3EOZ0803UD",
+      "title": "SA - Windows Privilege Escalation - Workstation",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Ishaan Gupta",
+        "email": "sa-52500729@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T19:16:03.417Z"
+        }
+      ],
+      "created_time": "2026-04-30T19:20:47.181Z"
+    },
+    {
+      "id": "fc0b2265-1f3c-4d54-85f3-2f1a898a3e5f",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:TZEUTAJUWUOK",
+      "title": "SA - Excessive Firewall denies from Remote Source IP to Remote Destination IP(s) - Firewall",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Ishaan Gupta",
+        "email": "sa-52500729@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T17:24:25.338Z"
+        }
+      ],
+      "created_time": "2026-04-30T17:25:57.765Z"
+    },
+    {
+      "id": "1d93dd18-1ce8-4042-990f-7ec0d1a19572",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:G6XJAVNDJJ2A",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.671Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:38.609Z"
+    },
+    {
+      "id": "184843e0-fc1d-4845-ac2c-8b79b22700f7",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:DAKH2I9511S5",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.828Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:23.201Z"
+    },
+    {
+      "id": "2f0e1c33-6e14-4aa2-94ca-ee617d56e0ab",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:PRDZ8QFK4VXE",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.952Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:07.168Z"
+    },
+    {
+      "id": "7eeffbcc-a245-49c8-8237-83eab1e4b026",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:XHR476HD75QG",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.873Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:04.361Z"
+    },
+    {
+      "id": "e3d4562c-6389-4bc6-b46d-f8be2c009b7e",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:GQ6SJP4NUU9Y",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.021Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:03.555Z"
+    },
+    {
+      "id": "dd2b0063-6330-49b5-b3d2-a6a3be501bf7",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:D2WFI2L6ZQ9H",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.709Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:46:01.225Z"
+    },
+    {
+      "id": "80ce887e-24b8-44f0-a8bf-dd8a7c2a12c1",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:YILF9PI9V9WW",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.211Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:59.161Z"
+    },
+    {
+      "id": "e9e486b4-cdfd-471b-9611-5d300736904c",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:K1OPKEVQMQSB",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.031Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:57.542Z"
+    },
+    {
+      "id": "b5f7804a-07f2-42f5-a91f-9eeba674c78c",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:RMAVY548RW1H",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.675Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:57.228Z"
+    },
+    {
+      "id": "db3d4c62-e2e0-4346-a864-874ea405d41d",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:C0W4HR6I8NK6",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.572Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:56.686Z"
+    },
+    {
+      "id": "517df3ed-fff2-4d1d-8a78-6e11416a5999",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:8M37ZV1CG1ST",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.014Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:56.637Z"
+    },
+    {
+      "id": "de9fd2d2-5b0a-412e-95fa-a465fc32204c",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:DVLPNF3FQZHQ",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.218Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:56.312Z"
+    },
+    {
+      "id": "b7d313e7-214b-4c6d-8b85-af2b61c62632",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:SMWYE46A7LV1",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.361Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:56.071Z"
+    },
+    {
+      "id": "6476b185-618e-48df-b99f-dc6150a6eac3",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:IZZR418ADRZ3",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.831Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:55.119Z"
+    },
+    {
+      "id": "15341379-0230-4822-b5ce-96e98db5cc74",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:BLVZUUD5WX0I",
+      "title": "Microsoft Defender for Endpoint - A Hacktool Was Detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.667Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:54.846Z"
+    },
+    {
+      "id": "cb5d5ab8-1bee-4350-bbf1-a331eebe5116",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:3C0UATOJVS5S",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.116Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:54.603Z"
+    },
+    {
+      "id": "40de1c69-758c-4cb5-aa80-dfbe3be8ad8a",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:ZIG3A4IV6COL",
+      "title": "Microsoft Defender for Endpoint - A Hacktool Was Detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.078Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:53.049Z"
+    },
+    {
+      "id": "6caf685d-9c0f-43e4-96bd-a1eebbd9e609",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:NI10157M4R1G",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.559Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:50.682Z"
+    },
+    {
+      "id": "6f70ef54-1076-4237-b55c-618bf4c09dbd",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:P0CDOWKO7INR",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.573Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:49.993Z"
+    },
+    {
+      "id": "dc927155-f77e-4482-b825-a2482f307f48",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:CR5M0L1WCWOY",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.595Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:48.922Z"
+    },
+    {
+      "id": "f0efc600-8f3f-4dd6-b353-076df221272b",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:NWIFR46V1CRA",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:14.574Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:48.105Z"
+    },
+    {
+      "id": "ec673073-5e61-425e-b93e-543aff01f6c8",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:LF5UZI5UA9UM",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:45:15.212Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:45:44.422Z"
+    },
+    {
+      "id": "0921022e-3a16-4c0f-a901-c14728150571",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:4ZX1Z6V45C0F",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.166Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:50.388Z"
+    },
+    {
+      "id": "af9fc451-572b-4fa0-8acd-39650580832c",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:O5AOL8KKPIU8",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.072Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:46.448Z"
+    },
+    {
+      "id": "f6f6a2cc-3518-4a48-85de-ab8320559d3c",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:R7AI5Z3GJHAG",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.203Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:37.718Z"
+    },
+    {
+      "id": "ef782952-488d-4616-a565-43f6b9698dfb",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:N3LF8B6KPIJA",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.070Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:35.172Z"
+    },
+    {
+      "id": "a597357c-b818-46e4-b305-9993d16ab90b",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:INJVVFY9O350",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.134Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:34.331Z"
+    },
+    {
+      "id": "d0f79e8d-ae04-43d9-99ee-df4e899dbb97",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:6EFXG22FLO0P",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.526Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:32.896Z"
+    },
+    {
+      "id": "e922b769-79e7-42f9-bfd0-6943ee2fe5fb",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:JMRKABNL5SZD",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.124Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:32.864Z"
+    },
+    {
+      "id": "124ba6ae-1825-4380-915e-b87cf3e6ffa1",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:A0KT6SSEH8JK",
+      "title": "Microsoft Defender for Endpoint - Malware detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.374Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:32.752Z"
+    },
+    {
+      "id": "b8ff8252-e060-4b0a-8ade-c1bc6bea7efa",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:TA1LSKH58FT6",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.296Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:31.858Z"
+    },
+    {
+      "id": "cb40316a-0f75-4700-9306-dbe9873a116d",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:39S0QNH209OG",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.556Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:29.951Z"
+    },
+    {
+      "id": "47e458b9-35f6-43e1-b814-67ed226b48d0",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:3CVXFJAORUN5",
+      "title": "Microsoft Defender for Endpoint - Backdoor detected",
+      "status": "WAITING",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "name": "Jira Integration",
+        "email": "rapid7i@safeaeon.atlassian.net"
+      },
+      "alerts": [
+        {
+          "type": "Attacker Behavior Detected",
+          "type_description": "Activity that resembles attacker behavior has been observed in the network.",
+          "first_event_time": "2026-04-30T16:40:10.341Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:41:29.784Z"
+    },
+    {
+      "id": "ee9954e6-53ca-42b7-9d57-da08e7e80dd8",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:MMFUHNA28AT3",
+      "title": "Custom Alert SA - Admin Account Activity - O365 was triggered for log SA Office365 in log set Cloud Service Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Ishaan Gupta",
+        "email": "sa-52500729@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-04-30T16:30:29.423Z"
+        }
+      ],
+      "created_time": "2026-04-30T16:31:34.338Z"
+    },
+    {
+      "id": "03b8faae-8dee-4585-92bc-d90ac6936a6a",
+      "rrn": "rrn:investigation:us3:fa2fadc9-23bb-4a75-9318-dbd06da01c10:investigation:21D72PFX16RP",
+      "title": "Custom Alert SA - Admin Account Activity - O365 was triggered for log SA Office365 in log set Cloud Service Activity",
+      "status": "CLOSED",
+      "source": "ALERT",
+      "disposition": "BENIGN",
+      "assignee": {
+        "name": "Ishaan Gupta",
+        "email": "sa-52500729@safeaeon.com"
+      },
+      "alerts": [
+        {
+          "type": "Custom Alert - Pattern Detection",
+          "type_description": "One or more logs matched the pattern you defined.",
+          "first_event_time": "2026-04-30T15:39:44.372Z"
+        }
+      ],
+      "created_time": "2026-04-30T15:40:50.028Z"
+    }
+  ],
+  "metadata": {
+    "index": 0,
+    "size": 99,
+    "total_pages": 1,
+    "total_data": 46
+  }
+}

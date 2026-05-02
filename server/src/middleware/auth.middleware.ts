@@ -57,12 +57,14 @@ export const mfaVerifiedMiddleware = catchAsync(async(req:Request,res:Response,n
 })
 
 export const apiKeyVerify = catchAsync(async(req:Request,res:Response,next:NextFunction) => {
-    const apiKeyHeader = req.headers.authorization;
+    const apiKeyHeader = req.headers['x-api-key'] as string;
+    console.log('Headers received:', req.headers);
+    console.log('x-api-key header:', apiKeyHeader);
+    console.log('API_KEY env:', API_KEY);
     if(!apiKeyHeader) {
         throw new AppError("header not found",401);
     }
-    const apiKey = apiKeyHeader.split('x-api-key ')[1];
-    if(apiKey !== API_KEY) {
+    if(apiKeyHeader !== API_KEY) {
         throw new AppError("Invalid API Key",403);
     }
     next();

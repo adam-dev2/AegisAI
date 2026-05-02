@@ -11,7 +11,7 @@ import { catchAsync } from "../../lib/catchAsync.js";
 
 export const mfaSetup = async(user:any) => {
     const secret = speakeasy.generateSecret({
-        name:user.username
+        name: user.email
     })
     await pool.query("UPDATE users SET totp_secret = $1 WHERE email = $2",[secret.base32,user.email])
     const qr = await QRCode.toDataURL(secret.otpauth_url!);
@@ -33,13 +33,14 @@ export const completedMFASetup = catchAsync(async(req:Request,res:Response) => {
 export const mfaVerify = catchAsync(async(req:Request,res:Response) => {
     const authHeader = req.headers.authorization
     const token = authHeader?.split('Bearer ')[1];
-    const otp = req.body.otp;
+    const otp = req.body.token;
     if(!token) {
         throw new AppError("Login Token missing",401);
     }
-    const result = await pool.query('SELECT totp_secret FROM users WHERE email=$1',[req.user?.email]);
+    const result = await pool.query('SELECT totp_secret, id, email FROM users WHERE email=$1',[req.user?.email]);
 
     const secret = result.rows[0]?.totp_secret;
+    const user = result.rows[0];
 
     if(!secret) {
         throw new AppError("MFA Not Setup",400);
@@ -54,19 +55,28 @@ export const mfaVerify = catchAsync(async(req:Request,res:Response) => {
         throw new AppError('Invalid MFA',401);
     }
     const generatToken = jwt.sign({
-        id:req.user?.id,
-        username:req.user?.username,
-        email:req.user?.email,
+        id:user.id,
+        username:user.email,
+        email:user.email,
         mfa_verified:true
     },
     JWT_SECRET!,
     {expiresIn:'3h'}
     )
     const generateRefreshToken = jwt.sign({
-        id:req.user?.id,
+        id:user.id,
         type:'refresh'
     },REFRESH_JWT_SECRET!,{expiresIn:'8h'})
     res.cookie('token',generatToken,CookieOptions)
     res.cookie('refreshToken',generateRefreshToken,CookieOptions)
-    res.status(200).json({success:true})
+    res.status(200).json({
+        success:true,
+        accessToken: generatToken,
+        refreshToken: generateRefreshToken,
+        user: {
+            id: user.id,
+            email: user.email,
+            username: user.email
+        }
+    })
 })

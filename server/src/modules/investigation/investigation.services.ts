@@ -95,6 +95,42 @@ const ACTOR_EXTRACTORS: Record<string, (data: any) => ActorFields> = {
         asset: null,
         ip: d.source_json?.ClientIP ?? null,
     }),
+    dns: (d) => ({
+        user: null,
+        account: null,
+        asset: d.asset !== 'unknown' ? (d.asset ?? null) : null,
+        ip: d.source_ip ?? d.client_ip ?? null,
+    }),
+    web_proxy: (d) => ({
+        user: d.user ?? d.username ?? null,
+        account: null,
+        asset: null,
+        ip: d.source_ip ?? d.client_ip ?? null,
+    }),
+    endpoint: (d) => ({
+        user: d.user ?? d.username ?? null,
+        account: null,
+        asset: d.asset !== 'unknown' ? (d.asset ?? null) : null,
+        ip: d.source_ip ?? null,
+    }),
+    vpn: (d) => ({
+        user: d.user ?? d.username ?? null,
+        account: null,
+        asset: d.asset !== 'unknown' ? (d.asset ?? null) : null,
+        ip: d.source_ip ?? d.vpn_ip ?? null,
+    }),
+    email: (d) => ({
+        user: d.sender ?? d.from ?? null,
+        account: null,
+        asset: null,
+        ip: d.source_ip ?? null,
+    }),
+    file_activity: (d) => ({
+        user: d.user ?? d.username ?? null,
+        account: null,
+        asset: d.asset !== 'unknown' ? (d.asset ?? null) : null,
+        ip: d.source_ip ?? null,
+    }),
 };
 
 const defaultActorExtractor = (d: any): ActorFields => ({
@@ -157,8 +193,20 @@ function extractResult(eventType: string, data: any): string | null {
             return data.severity ?? null;
         case 'cloud_service_activity':
             return data.action ?? null;
+        case 'dns':
+            return data.response_code ?? data.query_type ?? null;
+        case 'web_proxy':
+            return data.action ?? data.http_status ?? null;
+        case 'endpoint':
+            return data.action ?? data.event_type ?? null;
+        case 'vpn':
+            return data.connection_status ?? data.action ?? null;
+        case 'email':
+            return data.action ?? data.subject ?? null;
+        case 'file_activity':
+            return data.action ?? data.operation ?? null;
         default:
-            return data.result ?? data.connection_status ?? data.action ?? null;
+            return data.result ?? data.action ?? null;
     }
 }
 
@@ -219,20 +267,14 @@ const processSingleInvestigation = async (rawInv: any): Promise<EnrichedInvestig
 
     const allAlerts: any[] = alertsRes.data?.data ?? [];
 
-    // Take top 4 alerts by created_time DESC
-    const topAlerts = [...allAlerts]
-        .sort((a, b) => new Date(b.created_time).getTime() - new Date(a.created_time).getTime())
-        .slice(0, 4);
 
-    logger.info(`Investigation ${parsed.id}: ${allAlerts.length} total alerts, processing top ${topAlerts.length}`);
+    logger.info(`Investigation ${parsed.id}: ${allAlerts.length} total alerts, processing top ${allAlerts.length}`);
 
     // Step 3: Fetch + normalize evidences for each alert in parallel (partial failure safe)
     const evidenceFailures: string[] = [];
 
     const enrichedAlerts: EnrichedAlert[] = await Promise.all(
-        topAlerts.map(async (alert: any): Promise<EnrichedAlert> => {
-            // alert.id IS the RRN e.g. "rrn:alerts:us3:...:alert:1:abc123"
-            // alert.rrn does not exist as a separate field — do not use it
+        allAlerts.map(async (alert: any): Promise<EnrichedAlert> => {
             const alertRrn = alert.id;
 
             try {
@@ -273,15 +315,18 @@ const processSingleInvestigation = async (rawInv: any): Promise<EnrichedInvestig
         details: detailsRes.data,
         pipeline_meta: {
             total_alerts: allAlerts.length,
-            alerts_fetched: topAlerts.length,
+            alerts_fetched: allAlerts.length,
             evidence_failures: evidenceFailures,
         },
         alerts: enrichedAlerts,
     };
 
     // Debug write — remove before prod
+    if (!fs.existsSync('investigationDetails')) {
+        fs.mkdirSync('investigationDetails', { recursive: true });
+    }
     fs.writeFileSync(
-        `context-${parsed.id}.json`,
+        `investigationDetails/context-${parsed.id}.json`,
         JSON.stringify(enriched, null, 2)
     );
     logger.info(`[CONTEXT] Saved for investigation ${parsed.id}`);
